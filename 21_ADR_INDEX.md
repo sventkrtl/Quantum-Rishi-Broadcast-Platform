@@ -1,4 +1,4 @@
-﻿# ADR Index
+# ADR Index
 
 ## Metadata
 
@@ -80,6 +80,11 @@ Covers ADR status, titles, relationships, supersession references, and decision 
 
 - ADR history remains stable across product evolution
 
+## Active ADRs
+
+- [ADR-0001: M1 Platform Services Architecture](file:///d:/Quantum%20Rishi%20Broadcast%20Platform/docs/adr/ADR_M1_PLATFORM_SERVICES.md)
+- [ADR-0002: M2 Runtime Stability & Performance Subsystems](file:///d:/Quantum%20Rishi%20Broadcast%20Platform/docs/adr/ADR_M2_RUNTIME_STABILITY.md)
+
 ## Related Documents
 
 - docs/adr/README.md
@@ -88,4 +93,5 @@ Covers ADR status, titles, relationships, supersession references, and decision 
 ## Read Next
 
 - docs/adr/README.md
+
 

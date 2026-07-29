@@ -1,1 +1,10 @@
-{}
+{
+  "env": "development",
+  "timezone": "UTC",
+  "logLevel": "info",
+  "features": {
+    "coldBootFallback": true,
+    "eventTracing": true,
+    "diagnosticsRingBuffer": true
+  }
+}
