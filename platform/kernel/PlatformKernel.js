@@ -5,6 +5,11 @@ const HealthSnapshot = require('../monitoring/HealthSnapshot');
 const ObservabilityEndpoints = require('../monitoring/ObservabilityEndpoints');
 const DiagnosticsEngine = require('../diagnostics/DiagnosticsEngine');
 const ErrorRecoverySystem = require('../recovery/ErrorRecoverySystem');
+const FrameScheduler = require('../runtime/FrameScheduler');
+const PerformanceMonitor = require('../monitoring/PerformanceMonitor');
+const MemoryMonitor = require('../monitoring/MemoryMonitor');
+const EventQueueOptimizer = require('../events/EventQueueOptimizer');
+const ResourceManager = require('../runtime/ResourceManager');
 
 class PlatformKernel {
   constructor(options = {}) {
@@ -20,23 +25,36 @@ class PlatformKernel {
     this.recovery = new ErrorRecoverySystem(this, options.recoveryOptions);
     this.endpoints = new ObservabilityEndpoints(this);
 
+    // M2 Stability Subsystems
+    this.frameScheduler = new FrameScheduler({ targetFps: this.config.get('obs', 'fps', 60) });
+    this.perfMonitor = new PerformanceMonitor();
+    this.memMonitor = new MemoryMonitor();
+    this.eventQueue = new EventQueueOptimizer();
+    this.resources = new ResourceManager();
+
+    // Hook frame scheduler into perf monitor
+    this.frameScheduler.addCallback((deltaMs) => {
+      this.perfMonitor.recordFrame(deltaMs);
+      this.diagnostics.recordFrameLatency(deltaMs);
+    });
+
     // Register built-in kernel capability
     this.capabilities.registerModule({
       id: 'platform-kernel',
       supportsVersion: '^0.1.0',
       requiresKernel: '0.1.0-m1',
       dependencies: [],
-      capabilities: ['lifecycle', 'config', 'health', 'diagnostics', 'recovery']
+      capabilities: ['lifecycle', 'config', 'health', 'diagnostics', 'recovery', 'scheduler', 'performance', 'memory', 'event-optimizer', 'resources']
     });
 
     this.health.setComponentStatus('platform-kernel', true, { role: 'orchestrator' });
-    this.diagnostics.log('INFO', 'PlatformKernel instantiated', { state: 'BOOTING' });
+    this.diagnostics.log('INFO', 'PlatformKernel instantiated with M2 Runtime Stability capabilities', { state: 'BOOTING' });
   }
 
   async boot() {
     this.diagnostics.log('INFO', 'PlatformKernel booting components...');
     
-    // Simulate loading modules from config
+    // Load modules from config
     const moduleList = this.config.get('modules', 'modules', []);
     for (const modConfig of moduleList) {
       if (modConfig.id !== 'platform-kernel' && modConfig.enabled) {
@@ -59,13 +77,16 @@ class PlatformKernel {
     if (this.health.getState() !== 'READY') {
       await this.boot();
     }
+    this.frameScheduler.start();
     this.health.setState('RUNNING');
-    this.diagnostics.log('INFO', 'PlatformKernel running', { state: 'RUNNING' });
+    this.diagnostics.log('INFO', 'PlatformKernel running with 60 FPS scheduler', { state: 'RUNNING' });
   }
 
   async stop() {
+    this.frameScheduler.stop();
+    this.resources.disposeAll();
     this.health.setState('STOPPED');
-    this.diagnostics.log('INFO', 'PlatformKernel stopped', { state: 'STOPPED' });
+    this.diagnostics.log('INFO', 'PlatformKernel stopped and resources purged', { state: 'STOPPED' });
   }
 
   getHealthState() {
@@ -73,7 +94,15 @@ class PlatformKernel {
   }
 
   getHealthSnapshot() {
-    return this.health.getSnapshot();
+    const baseSnapshot = this.health.getSnapshot();
+    return {
+      ...baseSnapshot,
+      performance: this.perfMonitor.getMetrics(),
+      memory: this.memMonitor.getMetrics(),
+      scheduler: this.frameScheduler.getMetrics(),
+      eventQueue: this.eventQueue.getMetrics(),
+      resources: this.resources.getMetrics()
+    };
   }
 
   getRuntimeManifest() {

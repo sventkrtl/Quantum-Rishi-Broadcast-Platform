@@ -23,6 +23,18 @@ class ObservabilityEndpoints {
     };
   }
 
+  handleStartup() {
+    const currentState = this.kernel ? this.kernel.getHealthState() : 'STOPPED';
+    const isStarted = (currentState !== 'BOOTING' && currentState !== 'STOPPED');
+    return {
+      statusCode: isStarted ? 200 : 503,
+      body: {
+        started: isStarted,
+        status: currentState
+      }
+    };
+  }
+
   handleHealth() {
     const snapshot = this.kernel ? this.kernel.getHealthSnapshot() : { status: 'STOPPED' };
     return {
