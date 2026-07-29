@@ -1,4 +1,4 @@
-﻿# Changelog
+# Changelog
 
 ## Metadata
 
@@ -75,9 +75,11 @@ Covers changes to constitutional documents, architecture boundaries, registries,
 - New change categories require documentation maintainer approval
 - Historical entries remain preserved
 
-## Stability Rules
+## Version History
 
-- The changelog remains historical even as product documents evolve
+- **v0.2.0-m2-runtime-stability (2026-07-29)**: Implemented M2 Runtime Stability - FrameScheduler (60 FPS), PerformanceMonitor, MemoryMonitor, EventQueueOptimizer, ResourceManager, /startup probe endpoint, BENCHMARK_PLAN, and 10,000-event stress test suite.
+- **v0.1.0-m1-platform-services (2026-07-29)**: Implemented M1 Platform Services, Config System, Capability Registry, Runtime Manifest, Observability Endpoints (/status, /ready, /health, /version), Diagnostics Engine, Error Recovery, and Cold Boot validation.
+- **v0.0.1-m0-walking-skeleton (2026-07-29)**: Initial platform architecture constitution and walking skeleton baseline.
 
 ## Related Documents
 
@@ -87,4 +89,5 @@ Covers changes to constitutional documents, architecture boundaries, registries,
 ## Read Next
 
 - 21_ADR_INDEX.md
+
 
