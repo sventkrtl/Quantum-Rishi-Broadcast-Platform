@@ -1,0 +1,1 @@
+I need to implement the Sprint 0.1 platform foundation according to the final architecture lock. This involves creating the required directory structure and implementing the platform contracts, kernel, event bus, render runtime, and overlay.

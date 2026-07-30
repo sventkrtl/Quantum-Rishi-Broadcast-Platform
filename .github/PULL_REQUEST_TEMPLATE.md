@@ -1,31 +1,38 @@
-# Pull Request Template
+---
+name: Pull Request
+about: Standard PR for av-media-telangana-platform
+---
 
-## Description
-Please describe your changes in detail.
+## Summary
 
-## Related Issue
-Please link to the issue this PR addresses (if applicable).
-
-## Type of Change
-Please delete options that are not relevant.
-- [ ] Documentation update
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Breaking change
-- [ ] Refactor
-- [ ] Other (please describe):
+<!-- What does this PR do? One paragraph. -->
 
 ## Checklist
-Please check all that apply:
-- [ ] I have read the [CONTRIBUTING.md](CONTRIBUTING.md) document
-- [ ] I have read the [Engineering Oath](99_ENGINEERING_OATH.md)
-- [ ] My changes follow the project's documentation standards
-- [ ] I have updated the relevant documentation sections
-- [ ] I have checked for spelling and grammar errors
-- [ ] I have updated any related documentation
-- [ ] I have verified that all links are valid
-- [ ] I have maintained consistent terminology
-- [ ] I have not added any implementation code or technology-specific details
 
-## Additional Notes
-Feel free to add any other context about your pull request here.
+### Constitution
+- [ ] `docs/constitution.md` rules reviewed before any code was written
+- [ ] No `modules/` folder created — overlay engines go in `overlay/`
+- [ ] No state duplication — Single Source of Truth maintained
+
+### Scope
+- [ ] Only the requested task is implemented — no automatic progression to next sprint
+
+### ADR (if architectural change)
+- [ ] ADR created in `docs/adr/` before implementation
+- [ ] ADR is referenced here: `docs/adr/ADR-XXXX-...`
+
+### Testing
+- [ ] Unit tests pass
+- [ ] OBS Studio visual validation completed (screenshot attached below)
+
+### Documentation Sync
+- [ ] `docs/roadmap.md` updated
+- [ ] `docs/constitution.md` updated (if applicable)
+
+## OBS Validation Screenshot
+
+<!-- Attach screenshot from OBS Studio Browser Source (1920x1080) -->
+
+## Related ADR
+
+<!-- Link to ADR if applicable, or write "N/A" -->

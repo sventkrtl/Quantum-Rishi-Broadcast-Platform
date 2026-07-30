@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AV Media Telangana — Control Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="panel">
+        <header class="panel-header">
+            <div class="logo">
+                <span class="logo-dot"></span>
+                AV Media Telangana
+            </div>
+            <h1>Platform Control Panel</h1>
+            <div id="connection-status" class="connection-badge disconnected">
+                <span class="connection-dot"></span>
+                Connecting…
+            </div>
+        </header>
+
+        <!-- Live State Display -->
+        <section class="state-section">
+            <h2>Live Platform & Dataset State</h2>
+            <div class="state-grid">
+                <div class="state-card">
+                    <div class="state-card-label">Kernel</div>
+                    <div class="state-card-value" id="kernel-state">—</div>
+                </div>
+                <div class="state-card">
+                    <div class="state-card-label">Runtime</div>
+                    <div class="state-card-value" id="runtime-state">—</div>
+                </div>
+                <div class="state-card">
+                    <div class="state-card-label">Sheet Status</div>
+                    <div class="state-card-value" id="sheet-status">—</div>
+                </div>
+                <div class="state-card">
+                    <div class="state-card-label">Connected</div>
+                    <div class="state-card-value" id="sheet-connected">—</div>
+                </div>
+                <div class="state-card">
+                    <div class="state-card-label">Dataset Version</div>
+                    <div class="state-card-value" id="dataset-version">—</div>
+                </div>
+                <div class="state-card">
+                    <div class="state-card-label">Row Count</div>
+                    <div class="state-card-value" id="row-count">—</div>
+                </div>
+                <div class="state-card">
+                    <div class="state-card-label">Last Refresh</div>
+                    <div class="state-card-value small" id="last-refresh">—</div>
+                </div>
+                <div class="state-card">
+                    <div class="state-card-label">SSE Clients</div>
+                    <div class="state-card-value" id="client-count">—</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service / Data Pipeline Controls -->
+        <section class="control-section">
+            <h2>Google Sheet Pipeline Controls</h2>
+            <div class="button-row">
+                <button id="btn-refresh" class="btn btn-primary" onclick="serviceRefresh()">
+                    ↺ Manual Refresh
+                </button>
+                <button id="btn-reconnect" class="btn btn-primary" onclick="serviceReconnect()">
+                    🔌 Reconnect Sheet
+                </button>
+            </div>
+        </section>
+
+        <!-- Kernel Controls -->
+        <section class="control-section">
+            <h2>Kernel Controls</h2>
+            <div class="button-row">
+                <button id="btn-kernel-start" class="btn btn-success" onclick="kernelStart()">
+                    ▶ Start Kernel
+                </button>
+                <button id="btn-kernel-stop" class="btn btn-danger" onclick="kernelStop()">
+                    ■ Stop Kernel
+                </button>
+                <button id="btn-simulate-error" class="btn btn-warning" onclick="simulateError()">
+                    ⚠ Simulate Error Event
+                </button>
+            </div>
+        </section>
+
+        <!-- Event Log -->
+        <section class="log-section">
+            <div class="log-header">
+                <h2>Event Log</h2>
+                <button class="btn btn-ghost small" onclick="clearLog()">Clear</button>
+            </div>
+            <div id="event-log" class="event-log">
+                <div class="log-placeholder">Waiting for events…</div>
+            </div>
+        </section>
+    </div>
+
+    <script src="control-panel.js"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+KERNEL_BOOTING=platform.kernel.booting 

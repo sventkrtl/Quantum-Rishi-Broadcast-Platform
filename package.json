@@ -1,0 +1,19 @@
+{
+  "name": "av-media-telangana-platform",
+  "version": "0.1.0",
+  "description": "Platform-first broadcast graphics platform for Telugu news production.",
+  "main": "server.js",
+  "type": "commonjs",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev":   "node server.js",
+    "test":  "node tests/unit/run-all.js"
+  },
+  "keywords": ["broadcast", "overlay", "telangana", "news"],
+  "author": "",
+  "license": "ISC"
+}

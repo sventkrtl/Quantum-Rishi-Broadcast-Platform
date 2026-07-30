@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AV Media Telangana Platform - Overlay</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div id="test-box">
+        <h1>Platform & Data Pipeline</h1>
+        
+        <div class="status-group">
+            <div class="status-label">Platform Status</div>
+            <div class="status-value" id="platform-status-value">INITIALIZING</div>
+        </div>
+        
+        <div class="status-group">
+            <div class="status-label">Kernel State</div>
+            <div class="status-value" id="kernel-status-value">UNKNOWN</div>
+        </div>
+        
+        <div class="status-group">
+            <div class="status-label">Sheet Status</div>
+            <div class="status-value" id="sheet-status-value">DISCONNECTED</div>
+        </div>
+
+        <div class="status-group">
+            <div class="status-label">Connected</div>
+            <div class="status-value" id="sheet-connected-value">NO</div>
+        </div>
+
+        <div class="status-group">
+            <div class="status-label">Row Count</div>
+            <div class="status-value" id="sheet-rows-value">0</div>
+        </div>
+
+        <div class="status-group">
+            <div class="status-label">Dataset Version</div>
+            <div class="status-value" id="sheet-version-value">v0</div>
+        </div>
+
+        <div class="status-group">
+            <div class="status-label">Last Refresh</div>
+            <div class="status-value time-display" id="sheet-refresh-value">--:--:--</div>
+        </div>
+        
+        <div class="status-group">
+            <div class="status-label">Current Time</div>
+            <div class="status-value time-display" id="current-time-value">--:--:--</div>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>

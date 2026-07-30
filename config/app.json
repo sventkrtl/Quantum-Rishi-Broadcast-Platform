@@ -1,9 +1,0 @@
-{
-  "name": "Quantum Rishi Broadcast Platform",
-  "id": "quantum-rishi-broadcast-platform",
-  "version": "0.1.0-m1",
-  "milestone": "M1",
-  "environment": "development",
-  "port": 3000,
-  "debug": true
-}

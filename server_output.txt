@@ -1,0 +1,13 @@
+
+AV Media Telangana Platform v1.0.0
+  Server:        http://localhost:8085/
+  Overlay:       http://localhost:8085/overlay/
+  Control Panel: http://localhost:8085/control-panel/
+  Health:        http://localhost:8085/health
+  Events (SSE):  http://localhost:8085/events
+
+Press Ctrl+C to stop
+
+[Platform] Kernel started
+[Platform] Runtime started
+[Platform] GoogleSheetService started
